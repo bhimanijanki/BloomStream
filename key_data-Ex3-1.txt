@@ -1,0 +1,16 @@
+
+key of my last added value is:	0	1	2	
+
+key of my last added value is:	0	1	2	
+
+key of my last added value is:	0	1	2	
+
+key of my last added value is:	1	0	2	
+
+key of my last added value is:	1	0	2	
+
+key of my last added value is:	0	2	0	
+
+key of my last added value is:	0	1	2	
+
+key of my last added value is:	1	0	2	

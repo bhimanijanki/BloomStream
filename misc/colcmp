@@ -1,27 +1,3 @@
-#!/usr/bin/env perl
-
-#
-# Copyright (c) 2015, Jyri J. Virkki
-# All rights reserved.
-#
-# This file is under BSD license. See LICENSE file.
-#
-
-#
-# ./colcmp FILE1 [FILEn*]
-#
-# Graph one or more collision average runs (generated with colgraph).
-# The runs must be for the same SIZE (see colgraph).
-#
-# Requires ploticus to generate the graph. Note that the lines prefab
-# only supports four data sets so in practice that is the limit,
-# even though this script will process any number of input file.
-#
-# (To plot more than four, you could load the generated 'data.cmp'
-# file into an alternate graphing tool or spreadsheet instead of
-# relying on ploticus.)
-#
-
 $sets = 0;
 while (@ARGV) {
     $files[$sets] = shift(@ARGV);

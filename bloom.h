@@ -1,10 +1,3 @@
-/*
- *  Copyright (c) 2012-2017, Jyri J. Virkki
- *  All rights reserved.
- *
- *  This file is under BSD license. See LICENSE file.
- */
-
 #ifndef _BLOOM_H
 #define _BLOOM_H
 
@@ -34,7 +27,7 @@ struct bloom
   // change incompatibly at any moment. Client code MUST NOT access or rely
   // on these.
   double bpe;
-  unsigned char * bf;
+  unsigned int * bf;
   int ready;
 };
 
@@ -115,7 +108,7 @@ int bloom_init_size(struct bloom * bloom, int entries, double error,
  *    -1 - bloom not initialized
  *
  */
-int bloom_check(struct bloom * bloom, const void * buffer, int len, FILE *fp, struct freq * freq);
+int bloom_check(struct bloom * bloom, const char * buffer, int len, FILE *fp, struct freq * freq);
 
 
 /** ***************************************************************************
@@ -136,7 +129,7 @@ int bloom_check(struct bloom * bloom, const void * buffer, int len, FILE *fp, st
  *    -1 - bloom not initialized
  *
  */
-int bloom_add(struct bloom * bloom, const void * buffer, int len, FILE *fp, struct freq * freq);
+int bloom_add(struct bloom * bloom, const char * buffer, int len, FILE *fp, struct freq * freq);
 
 
 /** ***************************************************************************
@@ -169,6 +162,16 @@ void bloom_free(struct bloom * bloom);
  *
  */
 const char * bloom_version();
+
+unsigned int GetNumberOfDigits (unsigned char * i);
+
+int bloom_add_to_pair(struct bloom * BF_i, struct bloom * BF_j, const char * buffer , int len, FILE *fp, struct freq * freq, unsigned int * curr);
+
+int bloom_check_in_pair(struct bloom * BF_i, struct bloom * BF_j, const char * buffer , int len, FILE *fp, struct freq * freq);
+
+void blooms_to_bloomhist(struct bloom * BF_i, struct bloom * BF_j, struct bloom * BF_hist, struct freq * F_ij, struct freq * F_hist);
+
+int bloom_check_in_hist(struct bloom * BF_hist, const char * buffer , int len, FILE *fp, struct freq * F_hist);
 
 #ifdef __cplusplus
 }

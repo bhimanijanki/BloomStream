@@ -1,26 +1,3 @@
-#
-# Copyright (c) 2012-2017, Jyri J. Virkki
-# All rights reserved.
-#
-# This file is under BSD license. See LICENSE file.
-#
-# By default, builds optimized 64bit libbloom (under ./build)
-# Requires GNU Make, so invoke appropriately (make or gmake)
-#
-# Other build options:
-#
-#   DEBUG=1 make        to build debug instead of optimized
-#   BITS=32 make        to build 32bit library
-#   BITS=default make   to build platform default bitness (32 or 64)
-#
-# Other build targets:
-#
-#   make test           to build and run test code
-#   make release_test   to build and run larger tests
-#   make gcov           to build with code coverage and run gcov
-#   make clean          the usual
-#
-
 BLOOM_VERSION_MAJOR=1
 BLOOM_VERSION_MINOR=5
 BLOOM_VERSION=$(BLOOM_VERSION_MAJOR).$(BLOOM_VERSION_MINOR)
@@ -107,8 +84,11 @@ $(BUILD)/test-libbloom: $(TESTDIR)/test.c $(BUILD)/$(SO_VERSIONED)
 	(cd $(BUILD) && \
 	    $(COM) test.o -L$(BUILD) $(RPATH) -lbloom -o test-libbloom $(LIB))
 
-$(BUILD)/test-basic: $(TESTDIR)/basic.c $(BUILD)/libbloom.a
-	$(COM) -I$(TOP) $(TESTDIR)/basic.c $(BUILD)/libbloom.a $(LIB) -o $(BUILD)/test-basic
+$(BUILD)/test: $(TESTDIR)/basic.c $(BUILD)/libbloom.a
+	$(COM) -I$(TOP) $(TESTDIR)/basic.c $(BUILD)/libbloom.a $(LIB) -o $(BUILD)/test
+
+$(BUILD)/test2: $(TESTDIR)/test2.c $(BUILD)/libbloom.a
+	$(COM) -I$(TOP) $(TESTDIR)/test2.c $(BUILD)/libbloom.a $(LIB) -o $(BUILD)/test2
 
 $(BUILD)/%.o: %.c
 	mkdir -p $(BUILD)
@@ -121,8 +101,12 @@ $(BUILD)/murmurhash2.o: murmur2/MurmurHash2.c murmur2/murmurhash2.h
 clean:
 	rm -rf $(BUILD)
 
-test: $(BUILD)/test-libbloom $(BUILD)/test-basic
-	$(BUILD)/test-basic
+test: $(BUILD)/test-libbloom $(BUILD)/test
+	$(BUILD)/test
+	$(BUILD)/test-libbloom
+
+test2: $(BUILD)/test-libbloom $(BUILD)/test2
+	$(BUILD)/test2
 	$(BUILD)/test-libbloom
 
 vtest: $(BUILD)/test-libbloom

@@ -1,7 +1,7 @@
 
 Introduction
 ------------
-This is libbloom, a simple and small bloom filter implementation in C.
+This is modified bloom filter, a technique for data temperature identification implementation in C.
 
 If you are reading this you probably already know about bloom filters
 and why you might use one. If not, the wikipedia article is a good intro:
@@ -17,6 +17,11 @@ By default it builds an optimized 64 bit libbloom. See Makefile comments
 for other build options.
 
 The shared library will be in ./build/libbloom.so
+
+You may also compile and run some basic test simulteneously just by using command like "make test"
+We provide some sample main files to launch our framework in "testi.c" files
+
+We also provide some I/O workloads and python parser scripts for these workloads to construct proper input to our modified bloom filter as well as to analyze the results after data tempurature identification completes
 
 
 Sample Usage
@@ -38,8 +43,3 @@ Documentation
 Read bloom.h for more detailed documentation on the public interfaces.
 
 
-License
--------
-This code (except MurmurHash2) is under BSD license. See LICENSE file.
-
-See murmur2/README for info on MurmurHash2.

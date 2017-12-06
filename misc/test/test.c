@@ -1,10 +1,3 @@
-/*
- *  Copyright (c) 2012-2017, Jyri J. Virkki
- *  All rights reserved.
- *
- *  This file is under BSD license. See LICENSE file.
- */
-
 #include <assert.h>
 #include <fcntl.h>
 #include <stdint.h>
@@ -23,11 +16,6 @@
 #include <time.h>
 #endif
 
-
-/** ***************************************************************************
- * A few simple tests to check if it works at all.
- *
- */
 static int basic()
 {
   // printf("----- basic -----\n");

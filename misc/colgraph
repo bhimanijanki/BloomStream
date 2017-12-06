@@ -1,26 +1,3 @@
-#!/usr/bin/env perl
-
-#
-# Copyright (c) 2015, Jyri J. Virkki
-# All rights reserved.
-#
-# This file is under BSD license. See LICENSE file.
-#
-
-#
-# ./colgraph SIZE ERROR
-#
-# SIZE = size of bloom library to initialize
-# ERROR = expected error
-#
-# This script runs a random collision test (test-libbloom -c) $rounds
-# number of times for 10 element counts from SIZE/10 to SIZE. The
-# average of each run is saved in the 'data' file in the current
-# directory.
-#
-# If ploticus is available it'll also display a graph. Or you can use
-# any other graphing app or tool to process the 'data' file.
-#
 
 $rounds = 25;
 

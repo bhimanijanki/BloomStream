@@ -50,9 +50,9 @@ int main(int argc, char **argv)
   */
 
     
-  float a=200, b=0.128;  //ALL_UNIQUE - EX-1 (a>50)
+  //float a=200, b=0.128;  //ALL_UNIQUE - EX-1 (a>50)
   //float a=6, b=0.128; //NO UNIQUE HASH (THE UNUSUAL CASE)- EX-3 (b>0.128)
-  //float a=6, b=0.001; //NO UNIQUE HASH (THE UNUSUAL CASE)- EX-3 (b>0.128)
+  float a=6, b=0.001; //NO UNIQUE HASH (THE UNUSUAL CASE)- EX-3 (b>0.128)
    //float a=50, b=0.12;  //SOME COMMON HASH BUT EACH VALUE HAS AT LEAST ONE UNIQUE HASH - EX-2
 
    bloom_init(&BF_i, a, b);

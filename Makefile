@@ -90,6 +90,9 @@ $(BUILD)/test: $(TESTDIR)/basic.c $(BUILD)/libbloom.a
 $(BUILD)/test2: $(TESTDIR)/test2.c $(BUILD)/libbloom.a
 	$(COM) -I$(TOP) $(TESTDIR)/test2.c $(BUILD)/libbloom.a $(LIB) -o $(BUILD)/test2
 
+$(BUILD)/test3: $(TESTDIR)/test3.c $(BUILD)/libbloom.a
+	$(COM) -I$(TOP) $(TESTDIR)/test3.c $(BUILD)/libbloom.a $(LIB) -o $(BUILD)/test3
+
 $(BUILD)/%.o: %.c
 	mkdir -p $(BUILD)
 	$(COM) $(INC) -c $< -o $@
@@ -107,6 +110,10 @@ test: $(BUILD)/test-libbloom $(BUILD)/test
 
 test2: $(BUILD)/test-libbloom $(BUILD)/test2
 	$(BUILD)/test2
+	$(BUILD)/test-libbloom
+
+test3: $(BUILD)/test-libbloom $(BUILD)/test3
+	$(BUILD)/test3
 	$(BUILD)/test-libbloom
 
 vtest: $(BUILD)/test-libbloom

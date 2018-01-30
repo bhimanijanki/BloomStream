@@ -55,9 +55,13 @@ int main(int argc, char **argv)
   
   
 
-    
+ //sufficient memory case   
   unsigned long a=9999999; 
-  float b=0.00001;  //ALL_UNIQUE - EX-1 (a>50)
+  float b=0.000001;  
+
+  //Very less memory
+  // unsigned long a=9999; 
+  //float b=0.01; 
   //float a=6, b=0.128; //NO UNIQUE HASH (THE UNUSUAL CASE)- EX-3 (b>0.128)
   //float a=6, b=0.001; //NO UNIQUE HASH (THE UNUSUAL CASE)- EX-3 (b>0.128)
    //float a=50, b=0.12;  //SOME COMMON HASH BUT EACH VALUE HAS AT LEAST ONE UNIQUE HASH - EX-2

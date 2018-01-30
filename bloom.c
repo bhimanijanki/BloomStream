@@ -172,19 +172,13 @@ int bloom_add(struct bloom * bloom, const char * buffer, int len, FILE *fp, stru
 void bloom_print(struct bloom * bloom)
 {
   printf("bloom at %p\n", (void *)bloom);
-  printf(" ->entries = %d\n", bloom->entries);
-  printf(" ->error = %f\n", bloom->error);
-  printf(" ->bits = %d\n", bloom->bits);
-  printf(" ->bits per elem = %f\n", bloom->bpe);
-  printf(" ->bytes = %d\n", bloom->bytes);
-  printf(" ->hash functions = %d\n", bloom->hashes);
 }
 
 void freq_print(struct freq * freq)
 {
   printf("freq at %p\n", (void *)freq);
-  printf(" ->bits = %d\n", freq->bits * (int)sizeof(unsigned int));
-  printf(" ->bytes = %d\n", freq->bytes * (int)sizeof(unsigned int));
+  //printf(" ->bits = %d\n", freq->bits * (int)sizeof(unsigned int));
+  //printf(" ->bytes = %d\n", freq->bytes * (int)sizeof(unsigned int));
 }
 
 
@@ -263,8 +257,13 @@ void blooms_to_bloomhist(struct bloom * BF_i, struct bloom * BF_j, struct bloom 
   // BFhist = BFhist | BFi | BFj
   for(i=0; i<BF_i->bytes; i++){
       BF_hist->bf[i] = BF_hist->bf[i] | BF_i->bf[i] | BF_j->bf[i]; //janki: this is the main to copy
+      F_hist->bf[i] = ((F_hist->bf[i])/2) + F_ij->bf[i]; //janki: this is main to copy
   }
-  F_hist->bf = F_ij->bf; //janki: this is main to copy
+
+  bloom_init(BF_i, 9999999, 0.000001);
+  bloom_init(BF_j, 9999999, 0.000001);
+  //F_hist->bf = F_ij->bf; //janki: this is main to copy
+
 }
 
 int bloom_check_in_hist(struct bloom * BF_hist, const char * buffer , int len, FILE *fp, struct freq * F_hist)
